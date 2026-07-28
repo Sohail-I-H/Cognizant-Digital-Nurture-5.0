@@ -1,0 +1,59 @@
+CREATE TABLE Customers (
+    CustomerID NUMBER PRIMARY KEY,
+    CustomerName VARCHAR2(50),
+    Age NUMBER,
+    Balance NUMBER(10,2),
+    IsVIP VARCHAR2(3)
+);
+
+CREATE TABLE Loans (
+    LoanID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    InterestRate NUMBER(5,2),
+    DueDate DATE,
+    CONSTRAINT fk_customer
+        FOREIGN KEY (CustomerID)
+        REFERENCES Customers(CustomerID)
+);
+
+CREATE TABLE Accounts (
+    AccountID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    Balance NUMBER(10,2),
+    CONSTRAINT fk_account_customer
+        FOREIGN KEY (CustomerID)
+        REFERENCES Customers(CustomerID)
+);
+
+CREATE TABLE Employees (
+    EmployeeID NUMBER PRIMARY KEY,
+    EmployeeName VARCHAR2(50),
+    Department VARCHAR2(30),
+    Salary NUMBER(10,2)
+);
+
+INSERT INTO Customers VALUES (101,'Rahul',65,15000,'NO');
+INSERT INTO Customers VALUES (102,'Anita',45,8000,'NO');
+INSERT INTO Customers VALUES (103,'Suresh',70,25000,'NO');
+INSERT INTO Customers VALUES (104,'Priya',30,12000,'NO');
+INSERT INTO Customers VALUES (105,'Kiran',55,5000,'NO');
+
+INSERT INTO Loans VALUES (201,101,9.5,SYSDATE+10);
+INSERT INTO Loans VALUES (202,102,10,SYSDATE+45);
+INSERT INTO Loans VALUES (203,103,8.5,SYSDATE+20);
+INSERT INTO Loans VALUES (204,104,11,SYSDATE+5);
+INSERT INTO Loans VALUES (205,105,9,SYSDATE+60);
+
+INSERT INTO Accounts VALUES (301,101,50000);
+INSERT INTO Accounts VALUES (302,102,25000);
+INSERT INTO Accounts VALUES (303,103,40000);
+INSERT INTO Accounts VALUES (304,104,15000);
+INSERT INTO Accounts VALUES (305,105,10000);
+
+INSERT INTO Employees VALUES (401,'Amit','HR',50000);
+INSERT INTO Employees VALUES (402,'Sneha','IT',60000);
+INSERT INTO Employees VALUES (403,'Vikram','IT',55000);
+INSERT INTO Employees VALUES (404,'Neha','Finance',45000);
+INSERT INTO Employees VALUES (405,'Rohit','IT',70000);
+
+COMMIT;
