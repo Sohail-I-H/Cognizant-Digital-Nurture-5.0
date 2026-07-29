@@ -1,0 +1,24 @@
+<div *ngFor="let c of courses">
+
+  <h3>{{ c.name | uppercase }}</h3>
+
+  <p>Code: {{ c.code | lowercase }}</p>
+
+  <p>Credits: {{ c.credits }}</p>
+
+  <p>Fee: {{ c.fee | currency:'INR' }}</p>
+
+  <p>Start Date: {{ c.startDate | date:'longDate' }}</p>
+
+  <p
+    [ngStyle]="{
+      color: c.available ? 'green' : 'red'
+    }">
+
+    {{ c.available ? 'Available' : 'Closed' }}
+
+  </p>
+
+  <hr>
+
+</div>
